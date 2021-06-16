@@ -2,14 +2,27 @@ import './App.css';
 import Header from "./MyComponents/Header"
 import { Todos } from "./MyComponents/Todos";
 import { Footer } from "./MyComponents/Footer";
+import { AddTodo } from "./MyComponents/AddTodo";
+
+import React, { useState } from 'react';
 
 function App() {
+  const onDelete = (todo) => {
+    console.log(" i delete ", todo);
 
-  const onDelete = () =>{
-    console.log(" i delete ");
+
+    setTodos(todos.filter((d) => {
+      return d !== todo;
+    }));
+
   }
 
-  let todos = [     /* created a todos object */
+  const addtodo = (title,desc) =>{
+    console.log("added",title,desc)
+  }
+
+  // const [state, setstate] = useState(initialState)
+  const [todos, setTodos] = useState([
     {
       sno: 1,
       title: "finish Errors",
@@ -25,13 +38,20 @@ function App() {
       title: "finish 3",
       desc: "finish the 3 and uplode the project"
     }
-  ]
+  ]);
+
   return (
-   <>
-   <Header title="My Todos List" searchBar={false} />
-   <Todos todos={todos} onDelete={onDelete}/>
-   <Footer/>
-   </>
+    <>
+      <Header title="My Todos List" searchBar={false} />
+
+      <AddTodo addTodo={addTodo} />
+
+      {/* todos object is passed inside todos to todos.js  */}
+      <Todos todos={todos} onDelete={onDelete} />
+
+
+      <Footer />
+    </>
   );
 }
 
