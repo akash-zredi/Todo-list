@@ -7,6 +7,7 @@ export const TodoItem = ({todo, onDelete}) => {                 /*  destructurin
             <p> {todo.desc} </p>
             <button className="btn btn-sm btn-danger" onClick={ () => {onDelete(todo)}}  /* funtn passed under a call */
             >Delete</button>
+            
              
         </div>
     )
